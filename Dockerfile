@@ -29,7 +29,8 @@ WORKDIR $APP_HOME
 # 1. We copy these files from our current application to the /app container
 COPY Gemfile Gemfile.lock ./
 
-RUN bundle update --bundler
+RUN gem install bundler:1.17.3
+#RUN bundle update --bundler
 # We install all the dependencies
 RUN bundle install
 
