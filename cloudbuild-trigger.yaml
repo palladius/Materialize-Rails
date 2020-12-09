@@ -24,9 +24,7 @@ steps:
  
  
 tags: 
-  - '$_HOSTNAME'
+  - 'host::$_HOSTNAME'
   - 'rails'
-  - 'gprojects'
-  -  'wlf'
-  - '$_APPPNAME'
+  - 'metarepo'
   - "$_APPPNAME"
