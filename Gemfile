@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Riccardo START
+gem 'dotenv-rails', require: 'dotenv/rails-now' # needed to DRY the config :)
+# Riccardo END
+
 gem 'devise'
 gem 'jquery-turbolinks'
 gem 'rails-ujs'
