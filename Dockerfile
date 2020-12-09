@@ -14,11 +14,12 @@ RUN apt-get install -y \
   curl \
   build-essential \
   libmariadb-dev \
+  postgresql-client libpq5 libpq-dev \
   libpq-dev &&\
   curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  apt-get update && apt-get install -y nodejs yarn
+  apt-get update && apt-get install -y nodejs yarn 
 
 # We specify everything will happen within the /app folder inside the container
 RUN mkdir $APP_HOME
