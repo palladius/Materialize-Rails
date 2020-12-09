@@ -1,0 +1,19 @@
+# In input ricevo 2 INPUT VARIABLES:
+# - $TAG_NAME
+# - $_DOCKER_VERSION
+# - $_APPNAME
+# copiato da Anatroccolo
+
+options:
+  machineType: 'N1_HIGHCPU_8'
+timeout: 660s
+tags: ['ricc-prova', 'vediamo-se-funge', '$_APPNAME', 'ruby']
+images:
+- 'gcr.io/$PROJECT_ID/$_APPNAME-bifido'
+- 'gcr.io/$PROJECT_ID/$_APPNAME-bifido:v$_DOCKER_VERSION'
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', "gcr.io/$PROJECT_ID/$_APPNAME-bifido:v$_DOCKER_VERSION", '.']
+    # compilo non eseguo quindi target dovrebb essere inutile
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', "gcr.io/$PROJECT_ID/$_APPNAME-bifido:v$_DOCKER_VERSION", "gcr.io/$PROJECT_ID/$_APPNAME-bifido"]
