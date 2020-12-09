@@ -40,7 +40,7 @@ gem 'bcrypt', platforms: :ruby
 # gem 'capistrano-rails', group: :development
 
 group :production do
-  gem 'pg'
+  #gem 'pg'                       # I believe PG is not required since its all in sqlite3 :)
   gem 'rails_12factor'
   gem 'dalli'
 end

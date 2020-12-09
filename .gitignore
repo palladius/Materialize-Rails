@@ -21,3 +21,4 @@
 .byebug_history
 rm-reserved.md
 Makefile.goldie
+node_modules/
