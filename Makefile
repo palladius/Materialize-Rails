@@ -23,3 +23,8 @@ docker-build:
 
 docker-run-p3000: docker-build
 	docker run -p 3000:8080 -it $(APPNAME):v$(VERSION)
+
+
+autotag:
+	git tag v$(VERSION) master
+	git push --tags
