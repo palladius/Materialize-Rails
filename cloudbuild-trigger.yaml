@@ -1,0 +1,30 @@
+###########################################
+# Ciao, sono                      ROOT/rails/cloudbuild-trigger.yaml
+# Ciao, sono  invocato da un trigger manuale che sta qui:
+# https://console.cloud.google.com/cloud-build/triggers/edit/3ea0601e-3544-4385-ab5a-f4c7f7aceb4c?hl=IT&project=ror-goldie
+#
+# A lingotto is a material gold, no? :) Hence the name
+###########################################
+timeout: 1200s
+options:
+  machineType: 'N1_HIGHCPU_8'
+images:
+  - 'gcr.io/$PROJECT_ID/lingotto-trigger'
+steps:
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', "gcr.io/$PROJECT_ID/lingotto-trigger", '.']
+   #dir: rails/ror6-2020-lingotto/
+
+ - name: 'gcr.io/cloud-builders/gcloud'
+   entrypoint: 'bash'
+   args: 
+   - '-eEuo'
+   - 'pipefail'
+   - '-c'
+   - './cloud-build-simple.sh'
+ 
+ #- name: 'bash'
+ #  id: 3 Prova Bash del menga da togliere per vedere Articoli in DEV
+ #  args: ['echo', 'Article.all.count', '|', 'rails', 'c']
+ 
+tags: ['$_HOSTNAME', 'rails', 'gprojects', 'wlf', 'scopiazzato-da-sinatroccolo']
