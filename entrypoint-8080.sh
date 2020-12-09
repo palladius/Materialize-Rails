@@ -4,7 +4,7 @@
 # prepare
 # ActionView::Template::Error (The asset "home.png" is not present in the asset pipeline.
 VER="$(cat VERSION)"
-MYPORT="${PORT:-8081}"
+MYPORT="${PORT:-8080}"
 
 echo "[goldie-v$VER-entrypoint] BEGIN. Args: $*"
     
