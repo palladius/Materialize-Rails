@@ -3,13 +3,16 @@
 # questo supera ed estende il RUN IN PROD basandosi sulla sola regola di RAILS_ENV :) 
 # prepare
 # ActionView::Template::Error (The asset "home.png" is not present in the asset pipeline.
+. .env
+
 VER="$(cat VERSION)"
 MYPORT="${PORT:-8080}"
+APP_NAME="${APPNAME:-entrypoint-sobenme}"
 
-echo "[goldie-v$VER-entrypoint] BEGIN. Args: $*"
+echo "[$APP_NAME-v$VER-entrypoint] BEGIN. Args: $*"
     
 if printenv RAILS_ENV | grep -q production ; then
-    echo "[goldie-v$VER-entrypoint] Riccardo I believe this is PROD Lets scagnozz the dogs on port $MYPORT"
+    echo "[$APP_NAME-v$VER-entrypoint] Riccardo I believe this is PROD Lets scagnozz the dogs on port $MYPORT"
     export RAILS_LOG_TO_STDOUT=yesplease 
     export RAILS_ENV=production
     export RACK_ENV production
@@ -23,11 +26,11 @@ if printenv RAILS_ENV | grep -q production ; then
 
     bundle exec rails s -b 0.0.0.0 -p $MYPORT
 else
-    echo "[goldie-v$VER-entrypoint] Riccardo I believe this is DEV Lets keep it easy peasy on port $MYPORT"
+    echo "[$APP_NAME-v$VER-entrypoint] Riccardo I believe this is DEV Lets keep it easy peasy on port $MYPORT"
     source .env
     bundle exec rake assets:precompile
     bundle exec rails s -b 0.0.0.0 -p $MYPORT
 fi
 
-echo "[goldie-v$VER-entrypoint] END. Calling now Args in case you gave me: $*"
+echo "[$APP_NAME-v$VER-entrypoint] END. Calling now Args in case you gave me: $*"
 "$@"
